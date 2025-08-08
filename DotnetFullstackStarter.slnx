@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src\Api.Migrations\Api.Migrations.csproj" Type="C#" />
+    <Project Path="src\Api\Api.csproj" Type="C#" />
+    <Project Path="src\ServiceDefaults\ServiceDefaults.csproj" Type="C#" />
+    <Project Path="src\Frontend\Frontend.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/Integration.Test/Integration.Test.csproj" Type="C#" />
+  </Folder>
+  <Project Path="AppHost\AppHost.csproj" Type="C#" />
+</Solution>

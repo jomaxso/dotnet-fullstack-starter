@@ -1,0 +1,45 @@
+@page "/authentication/login"
+@* @page "/authentication/login/{apikey}" *@
+
+<PageTitle>DotnetFullstackStarter - Login</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Medium"
+              Class="d-flex align-items-center justify-content-center mud-width-full"
+              Style="min-height: 100vh; padding: 20px; box-sizing: border-box;">
+    <MudPaper Elevation="0"
+              Class="pa-8 align-items-center"
+              Width="100%">
+
+        <MudItem xs="12">
+            <MudPaper Class="d-flex align-items-center justify-center mud-width-full py-8"
+                      Elevation="0">
+                @* images *@
+            </MudPaper>
+        </MudItem>
+
+        <MudTabs Elevation="0"
+                 Rounded="true"
+                 PanelClass="pa-6  width: 100%;"
+                 Position="Position.Top"
+                 Centered="true"
+                 HideSlider="true">
+            <MudTabPanel Text="Login with Password">
+                <LoginWithPassword />
+            </MudTabPanel>
+
+            <MudTabPanel Text="Login with Two Factor">
+                @* <TwoFactorAuth/> *@
+            </MudTabPanel>
+
+
+            <MudTabPanel Text="Reset Password">
+                @* <RequestPasswordReset/> *@
+            </MudTabPanel>
+
+            <MudTabPanel Text="Create New Account">
+                @* <CreateNewAccount/> *@
+            </MudTabPanel>
+        </MudTabs>
+
+    </MudPaper>
+</MudContainer>

@@ -1,0 +1,23 @@
+﻿@inject NavigationManager NavigationManager
+
+<MudContainer MaxWidth="MaxWidth.Medium"
+              Class="d-flex flex-column align-center justify-center mt-12">
+    <MudIcon Icon="@Icons.Material.Filled.SearchOff" Color="Color.Secondary"
+             Size="Size.Large"/>
+    <MudText Typo="Typo.h3" Class="mt-4" Color="Color.Secondary">
+        404 – Page Not Found
+    </MudText>
+    <MudText Typo="Typo.body1" Class="mt-2 text-center">
+        The page you're looking for doesn't exist or has been moved.
+    </MudText>
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="mt-6"
+               OnClick="@GoHome">
+        Back to Home
+    </MudButton>
+</MudContainer>
+
+@code {
+
+    void GoHome() => NavigationManager.NavigateTo("/");
+
+}

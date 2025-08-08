@@ -1,0 +1,14 @@
+{
+    "razor.format.enable": true,
+    "html.format.enable": true,
+    "html.format.wrapLineLength": 80,
+    "html.format.wrapAttributes": "force-expand-multiline",
+    "html.format.wrapAttributesIndentSize": 4,
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editorconfig.generateAuto": false,
+    "files.associations": {
+        "*.razor": "aspnetcorerazor"
+    },
+    "razor.completion.commitElementsWithSpace": true,
+}

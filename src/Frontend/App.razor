@@ -1,0 +1,31 @@
+﻿<Router AppAssembly="@typeof(App).Assembly">
+    <Found Context="routeData">
+        <AuthorizeRouteView RouteData="@routeData"
+                            DefaultLayout="@typeof(MainLayout)">
+            <Authorizing>
+                <MudPaper Class="d-flex flex-column align-center justify-center" Style="height: 100vh;">
+                    <MudProgressCircular Indeterminate="true" Color="Color.Primary" Size="Size.Large" />
+                    <MudText Typo="Typo.h6" Class="mt-4">Lade Benutzerstatus...</MudText>
+                </MudPaper>
+            </Authorizing>
+            <NotAuthorized>
+                @if (context.User.Identity?.IsAuthenticated is not true)
+                {
+                    <RedirectToLogin />
+                }
+                else
+                {
+                    <Forbidden/>
+                }
+            </NotAuthorized>
+        </AuthorizeRouteView>
+        <FocusOnNavigate RouteData="@routeData"
+                         Selector="h1" />
+    </Found>
+    <NotFound>
+        <PageTitle>Not found</PageTitle>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <NotFound/>
+        </LayoutView>
+    </NotFound>
+</Router>

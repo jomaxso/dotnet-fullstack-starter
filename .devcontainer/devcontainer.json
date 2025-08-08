@@ -1,0 +1,51 @@
+{
+    "name": "dotnet-multisdk-devcontainer",
+    "build": {
+        "dockerfile": "./Dockerfile"
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/git:latest": {},
+        "ghcr.io/devcontainers/features/powershell:1": {},
+        "ghcr.io/devcontainers/features/docker-in-docker:latest": {},
+        "ghcr.io/dotnet/aspire-devcontainer-feature/dotnetaspire:latest": {}
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "editor.formatOnSave": true,
+                "editor.codeActionsOnSave": {
+                    "source.organizeImports": "explicit"
+                },
+                "csharp.format.enable": true,
+                "csharp.referencesCodeLens.enabled": true,
+                "csharp.testsCodeLens.enabled": true
+            },
+            "extensions": [
+                "EditorConfig.EditorConfig",
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                "GitLab.gitlab-workflow",
+                "hediet.vscode-drawio",
+                "ms-azuretools.vscode-docker",
+                "ms-azuretools.vscode-containers",
+                "ms-dotnettools.csdevkit",
+                "ms-dotnettools.csharp",
+                "ms-dotnettools.vscode-dotnet-runtime",
+                "ms-vscode.vscode-speech",
+                "ms-vscode.vscode-speech-language-pack-de-de"
+            ]
+        }
+    },
+    "containerEnv": {
+        "DOTNET_CLI_TELEMETRY_OPTOUT": "1",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+    },
+    "forwardPorts": [
+        5000,
+        5001,
+        4321
+    ],
+    "mounts": [
+        "source=nuget-cache,target=/root/.nuget/packages,type=volume"
+    ]
+}

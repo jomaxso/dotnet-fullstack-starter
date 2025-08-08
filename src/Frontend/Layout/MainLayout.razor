@@ -1,0 +1,88 @@
+﻿@inherits LayoutComponentBase
+
+<PageTitle>DotnetFullstackStarter</PageTitle>
+
+<MudThemeProvider @ref="_mudThemeProvider"
+                  @bind-IsDarkMode="@_isDarkMode"
+                  Theme="_myCustomTheme"/>
+<MudPopoverProvider/>
+<MudDialogProvider/>
+<MudSnackbarProvider/>
+
+<div class="page">
+    <MudLayout>
+        <AuthorizeView>
+            <Authorized>
+                <MudAppBar Elevation="2" Dense="true" Color="Color.Primary">
+
+                    <MudIconButton Icon="@Icons.Material.Filled.Menu"
+                                   Color="Color.Inherit"
+                                   Edge="Edge.Start"
+                                   OnClick="@DrawerToggle"/>
+                    <MainNavBar @bind-IsDarkMode="_isDarkMode"/>
+                </MudAppBar>
+
+                <MudDrawer @bind-Open="_drawerOpen"
+                           Variant="@DrawerVariant.Responsive"
+                           ClipMode="DrawerClipMode.Always">
+                    <SidebarMenu/>
+                </MudDrawer>
+
+                <MudMainContent>
+                    @Body
+                </MudMainContent>
+            </Authorized>
+
+            <NotAuthorized>
+                <MudMainContent>
+                    <div class="public-layout">
+                        <div class="content px-4">
+                            @Body
+                        </div>
+                    </div>
+                </MudMainContent>
+            </NotAuthorized>
+        </AuthorizeView>
+    </MudLayout>
+</div>
+
+@code {
+    private bool _isDarkMode;
+    private MudThemeProvider? _mudThemeProvider;
+    private bool _drawerOpen = true;
+
+    void DrawerToggle() => _drawerOpen = !_drawerOpen;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await _mudThemeProvider!.WatchSystemDarkModeAsync(OnSystemDarkModeChanged);
+            StateHasChanged();
+        }
+    }
+
+    private Task OnSystemDarkModeChanged(bool newValue)
+    {
+        _isDarkMode = newValue;
+        StateHasChanged();
+        return Task.CompletedTask;
+    }
+
+    private readonly MudTheme _myCustomTheme = new()
+    {
+        PaletteLight = new PaletteLight
+        {
+            Primary = Colors.Blue.Darken4,
+            Secondary = Colors.Pink.Accent2,
+            Info = Colors.Blue.Lighten1,
+            Tertiary = Colors.Gray.Darken2
+        },
+        PaletteDark = new PaletteDark
+        {
+            Primary = Colors.Indigo.Lighten1,
+            Secondary = Colors.Pink.Lighten1,
+        }
+    };
+
+}
